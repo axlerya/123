@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  web:
+    image: nginx:latest
+    ports:
+      - "80:80"
+
+  db:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: example
+      MYSQL_DATABASE: mydatabase
+      MYSQL_USER: myuser
+      MYSQL_PASSWORD: mypassword
+    command: ["--server-id=1", "--log-bin=mysql-bin", "--binlog-format=ROW"]
+
+  adminer:
+    image: adminer:latest
+    ports:
+      - "8080:8080"
